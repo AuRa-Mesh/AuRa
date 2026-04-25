@@ -1,0 +1,30 @@
+# Python
+server/.venv/
+server/__pycache__/
+**/__pycache__/
+*.py[cod]
+*.so
+
+# Runtime / secrets (do not commit)
+server/aura_site.db
+.env
+.env.*
+*.local
+# Локальный SSH/путь к VPS (см. deploy.env.example)
+deploy.env
+.deploy.env
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# SHA последней залитой APК — чтобы upload.sh знал, сменился ли файл (инкремент apk_build.txt)
+.apk_last_upload_sha
+
+# GitHub file limit: 100 MB; APK is ~138 MB — ship via GitHub Release or rsync to server
+assets/AuRa.APK
+*.APK
+*.apk
+deploy.env

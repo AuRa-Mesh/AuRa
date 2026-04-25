@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030108">
+  <title>AuRa — вход</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/landing.css?v=20260425-no-xp">
+  <style>
+    .auth-wrap { padding: 88px 0; }
+    .auth-card { max-width: 520px; margin: 0 auto; border-radius: 22px; padding: 26px; border: 1px solid var(--border); }
+    .auth-card h1 { margin: 0 0 10px; font-size: 2rem; letter-spacing: -0.02em; }
+    .auth-card p { margin: 0 0 18px; color: var(--muted); line-height: 1.6; }
+    .field { display: grid; gap: 8px; margin-bottom: 14px; }
+    .field label { font-size: 0.9rem; color: rgba(255,255,255,0.82); }
+    .field input { padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.06); color: #fff; font: inherit; }
+    .row { display:flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .err { margin-top: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(255,107,138,0.55); background: rgba(80,0,10,0.28); color: rgba(255, 220, 228, 0.95); display:none; }
+    .hint { margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <canvas class="matrix-bg" id="matrixCanvas" aria-hidden="true"></canvas>
+  <div class="bg-noise"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-light bg-light-left"></div>
+  <div class="bg-light bg-light-right"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a href="/" class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text">AuRa</span>
+      </a>
+      <nav class="nav">
+        <a href="/">Функции</a>
+        <a class="nav-cta" href="/auth">Войти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="auth-wrap">
+    <div class="container">
+      <div class="glass auth-card">
+        <h1>Авторизация</h1>
+        <p>Войдите по <strong>Node ID</strong> и паролю. После входа откроется профиль с QR для синхронизации с приложением и VIP.</p>
+        <p class="hint" style="margin: -8px 0 14px; font-size: 0.9rem; line-height: 1.5">Админ: в <strong>Node ID</strong> введите <code>root</code> (если на сервере не задан другой <code>AURA_ADMIN_LOGIN</code>), в пароле — значение <code>AURA_ADMIN_PASSWORD</code> (по умолчанию в коде). Обычная нода: 8 hex, как в приложении.</p>
+
+        <div class="field">
+          <label for="nodeId">Node ID</label>
+          <input id="nodeId" type="text" placeholder="например !abcdef12" autocomplete="username">
+        </div>
+
+        <div class="field">
+          <label for="password">Пароль</label>
+          <input id="password" type="password" placeholder="XXXX-XXXX" autocomplete="current-password">
+        </div>
+
+        <div class="row">
+          <button class="btn btn-primary" id="loginBtn" type="button">Войти</button>
+          <a class="btn btn-ghost" href="/">Назад</a>
+        </div>
+
+        <div class="err" id="errBox"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/landing.js?v=20260425-no-xp"></script>
+  <script src="/auth.js?v=20260425-no-xp"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:label="AuRus PwdGen"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PasswordGen">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="AuRus PwdGen"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            Генератор одноразовых VIP-кодов продления. Не имеет LAUNCHER-фильтра —
+            открывается только из главного экрана (кнопка в правом верхнем углу).
+        -->
+        <activity
+            android:name=".VipExtensionActivity"
+            android:exported="false"
+            android:label="Aura-VIP"
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="adjustResize" />
+    </application>
+
+</manifest>

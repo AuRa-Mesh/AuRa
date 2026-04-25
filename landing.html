@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aura — безопасная mesh-платформа для связи, картографии, телеметрии и управления радио-узлами.">
+  <meta name="keywords" content="Aura, mesh, LoRa, Bluetooth, карта, телеметрия, обновление прошивки, безопасные сообщения">
+  <meta name="author" content="Aura Team">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#030108">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Aura">
+  <meta property="og:title" content="AuRa — связь будущего из прошлого">
+  <meta property="og:description" content="Единая платформа для сообщений, узлов, картографии, телеметрии и управления mesh-радио.">
+  <meta property="og:url" content="https://aura.app/">
+  <meta property="og:image" content="https://aura.app/assets/og-cover.jpg">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="AuRa — связь будущего из прошлого">
+  <meta property="twitter:description" content="Все функции Aura на одной продакшн-странице.">
+  <meta property="twitter:image" content="https://aura.app/assets/og-cover.jpg">
+  <title>AuRa — связь будущего из прошлого</title>
+  <link rel="canonical" href="https://aura.app/">
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="%239f33ff"/><stop offset="1" stop-color="%23ff4dff"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="%23030108"/><circle cx="32" cy="32" r="14" fill="url(%23g)"/></svg>'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="landing.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Aura",
+      "applicationCategory": "CommunicationApplication",
+      "operatingSystem": "Android",
+      "description": "Mesh‑платформа для защищенных сообщений, карты, телеметрии, настройки LoRa и обновления прошивки по воздуху.",
+      "featureList": [
+        "Каналы и личные сообщения",
+        "Сетевая карта и обмен метками",
+        "Управление узлами и группировка",
+        "Настройки LoRa, безопасности, MQTT и телеметрии",
+        "Обновление прошивки по воздуху и администрирование"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+            "priceCurrency": "RUB"
+      }
+    }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#content" data-i18n="a11y.skip">Перейти к контенту</a>
+  <canvas class="matrix-bg" id="matrixCanvas" aria-hidden="true"></canvas>
+  <div class="bg-noise"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-light bg-light-left"></div>
+  <div class="bg-light bg-light-right"></div>
+  <div class="overlay-layer" id="overlayLayer" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a href="#top" class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text">AuRa</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" data-i18n-aria-label="a11y.menuOpen">☰</button>
+      <nav class="nav" id="mainNav">
+        <a href="#features" data-i18n="nav.features">Функции</a>
+        <a href="#platform" data-i18n="nav.platform">Платформа</a>
+        <a href="#screenshots" data-i18n="nav.screenshots">Скриншоты</a>
+        <a href="#workflow" data-i18n="nav.workflow">Сценарии</a>
+        <a href="#faq" data-i18n="nav.faq">Вопросы</a>
+        <a href="#cta" data-i18n="nav.contacts">Контакты</a>
+        <div class="lang" id="langSelect">
+          <button
+            class="lang-btn"
+            type="button"
+            id="langToggle"
+            aria-label="Сменить язык"
+            data-i18n-aria-label="a11y.langToggle"
+            aria-haspopup="menu"
+            aria-expanded="false"
+          >
+            <span class="lang-btn-label" data-i18n="lang.label">RU</span>
+            <span class="lang-btn-dot" aria-hidden="true"></span>
+            <span class="lang-btn-caret" aria-hidden="true">▾</span>
+          </button>
+          <div class="lang-menu" id="langMenu" role="menu" aria-label="Выбор языка">
+            <button class="lang-item" type="button" role="menuitemradio" aria-checked="true" data-lang="ru">
+              <span class="lang-item-title" data-i18n="lang.ruName">Русский</span>
+              <span class="lang-item-code">RU</span>
+            </button>
+            <button class="lang-item" type="button" role="menuitemradio" aria-checked="false" data-lang="en">
+              <span class="lang-item-title" data-i18n="lang.enName">English</span>
+              <span class="lang-item-code">EN</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="pill" data-i18n="hero.pill">НАБОР СВЯЗИ MESH</div>
+          <h1 data-i18n-html="hero.title">Единая платформа <br> для раскрытия полного потенциала вашей ноды</h1>
+          <p data-i18n="hero.lead">
+            Объедините сообщения, узлы, карту, телеметрию, безопасность, LoRa-настройки и обновление прошивки
+            в одном премиальном интерфейсе. Без компромиссов по скорости и контролю.
+          </p>
+          <div class="hero-actions">
+            <a href="assets/AuRa.APK" class="btn btn-primary" download="AuRa.APK">
+              <span data-i18n="hero.ctaPrimary">Скачать AuRa.APK (сборка 26.04-1)</span>
+              <span class="btn-icon">→</span>
+            </a>
+            <a href="assets/Node_Firmware_for_T114.uf2" class="btn btn-ghost" download="Node_Firmware_for_T114.uf2" data-i18n="hero.fwT114">Node_Firmware_for_T114</a>
+            <a href="assets/Node_Firmware_for_HELTEC_Pocket.uf2" class="btn btn-ghost" download="Node_Firmware_for_HELTEC_Pocket.uf2" data-i18n="hero.fwHeltec">Node_Firmware_for_HELTEC_Pocket</a>
+            <a href="#features" class="btn btn-ghost" data-i18n="hero.ctaSecondary">Смотреть возможности</a>
+          </div>
+          <div class="hero-stats">
+            <div class="metric">
+              <div class="metric-value" data-count="4">0</div>
+              <div class="metric-label" data-i18n="hero.metric.tabs">Основные вкладки</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" data-count="10">0</div>
+              <div class="metric-label" data-i18n="hero.metric.settingsModules">Модулей настроек</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value" data-count="30">0</div>
+              <div class="metric-label" data-i18n="hero.metric.keyFeatures">Ключевых функций</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" id="heroVisual">
+          <div class="hero-cosmos" aria-hidden="true">
+            <img
+              class="hero-cosmos-img"
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Logo-7ce8679e-45ab-4a06-9fd5-30d113f7d1f4.png"
+              alt=""
+              loading="eager"
+              decoding="async"
+            >
+            <div class="hero-cosmos-stars"></div>
+            <div class="hero-cosmos-meteors" aria-hidden="true">
+              <span class="meteor m1"></span>
+              <span class="meteor m2"></span>
+              <span class="meteor m3"></span>
+              <span class="meteor m4"></span>
+              <span class="meteor m5"></span>
+              <span class="meteor m6"></span>
+              <span class="meteor m7"></span>
+              <span class="meteor m8"></span>
+            </div>
+            <div class="hero-cosmos-glow"></div>
+          </div>
+          <div class="orbit-card glass">
+            <h3 data-i18n="hero.orbit1.title">Сигнал mesh в реальном времени</h3>
+            <ul>
+              <li><span data-i18n="hero.orbit1.kv1.k">Связь:</span> <span data-i18n="hero.orbit1.kv1.v">Bluetooth / USB / Wi‑Fi</span></li>
+              <li><span data-i18n="hero.orbit1.kv2.k">Статус:</span> <span data-i18n="hero.orbit1.kv2.v">Подключено к ноде</span></li>
+              <li><span data-i18n="hero.orbit1.kv3.k">Маршруты:</span> <span data-i18n="hero.orbit1.kv3.v">маршрутизация + подтверждения</span></li>
+            </ul>
+          </div>
+          <div class="orbit-card orbit-alt glass">
+            <h3 data-i18n="hero.orbit2.title">Модули в реальном времени</h3>
+            <ul>
+              <li data-i18n="hero.orbit2.li1">Сообщения и Личные сообщения</li>
+              <li data-i18n="hero.orbit2.li2">Карта и маяки</li>
+              <li data-i18n="hero.orbit2.li3">Телеметрия и обновление</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="container logos reveal">
+        <div class="logo-item" data-i18n="hero.logo1">СООБЩЕНИЯ</div>
+        <div class="logo-item" data-i18n="hero.logo2">УЗЛЫ</div>
+        <div class="logo-item" data-i18n="hero.logo3">КАРТА</div>
+        <div class="logo-item" data-i18n="hero.logo4">БЕЗОПАСНОСТЬ</div>
+        <div class="logo-item" data-i18n="hero.logo5">LORA</div>
+        <div class="logo-item" data-i18n="hero.logo6">ОБНОВЛЕНИЕ ПРОШИВКИ</div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="pill" data-i18n="features.pill">ВОЗМОЖНОСТИ ПРИЛОЖЕНИЯ</div>
+          <h2 data-i18n="features.title">Все функции Aura.APP на одной странице</h2>
+          <p data-i18n="features.lead">Лендинг покрывает фактические возможности приложения: от чатов до системного администрирования ноды.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card glass reveal">
+            <h3 data-i18n="features.card1.title">Сообщения и контент</h3>
+            <ul>
+              <li data-i18n="features.card1.li1">Каналы и личные сообщения</li>
+              <li data-i18n="features.card1.li2">Голосовые и фото-вложения</li>
+              <li data-i18n="features.card1.li3">Реакции, закрепы, поиск по сообщениям</li>
+              <li data-i18n="features.card1.li4">Опросы и чеклисты внутри диалога</li>
+              <li data-i18n="features.card1.li5">Быстрые ответы и история сообщений</li>
+            </ul>
+          </article>
+          <article class="feature-card glass reveal">
+            <h3 data-i18n="features.card2.title">Узлы и структура сети</h3>
+            <ul>
+              <li data-i18n="features.card2.li1">Список узлов и детальные карточки</li>
+              <li data-i18n="features.card2.li2">Группы/папки для сегментации нод</li>
+              <li data-i18n="features.card2.li3">Избранное и управление списком нод</li>
+              <li data-i18n="features.card2.li4">QR-инструменты для узлов</li>
+              <li data-i18n="features.card2.li5">Переход в Личные сообщения прямо из профиля узла</li>
+            </ul>
+          </article>
+          <article class="feature-card glass reveal">
+            <h3 data-i18n="features.card3.title">Карта и гео-сценарии</h3>
+            <ul>
+              <li data-i18n="features.card3.li1">Сетевая карта с активными узлами</li>
+              <li data-i18n="features.card3.li2">Метки и обмен по ссылке</li>
+              <li data-i18n="features.card3.li3">Импорт меток в карту из чата</li>
+              <li data-i18n="features.card3.li4">Канальная фильтрация карты</li>
+              <li data-i18n="features.card3.li5">Контроль передачи координат в mesh</li>
+            </ul>
+          </article>
+          <article class="feature-card glass reveal">
+            <h3 data-i18n="features.card4.title">Безопасность и доступ</h3>
+            <ul>
+              <li data-i18n="features.card4.li1">Экран пароля и сохранение идентичности</li>
+              <li data-i18n="features.card4.li2">Привязка/отвязка Bluetooth-устройства</li>
+              <li data-i18n="features.card4.li3">Оценка безопасности каналов (статус замка)</li>
+              <li data-i18n="features.card4.li4">Управление ключами и параметрами безопасности</li>
+              <li data-i18n="features.card4.li5">Устойчивая связь через фоновый сервис</li>
+            </ul>
+          </article>
+          <article class="feature-card glass reveal">
+            <h3 data-i18n="features.card5.title">Конфигурация радио</h3>
+            <ul>
+              <li data-i18n="features.card5.li1">LoRa-параметры и пресеты модема</li>
+              <li data-i18n="features.card5.li2">Каналы: создание и управление PSK</li>
+              <li data-i18n="features.card5.li3">MQTT-конфигурация и внешние уведомления</li>
+              <li data-i18n="features.card5.li4">Пользователь, устройство, уведомления</li>
+              <li data-i18n="features.card5.li5">Матрица/визуальные параметры чата</li>
+            </ul>
+          </article>
+          <article class="feature-card glass reveal">
+            <h3 data-i18n="features.card6.title">Телеметрия и администрирование</h3>
+            <ul>
+              <li data-i18n="features.card6.li1">Environment, Air, Power, Health экраны</li>
+              <li data-i18n="features.card6.li2">Обновление прошивки по воздуху</li>
+              <li data-i18n="features.card6.li3">Перезагрузка, выключение, заводской сброс</li>
+              <li data-i18n="features.card6.li4">Очистка списка узлов сети</li>
+              <li data-i18n="features.card6.li5">Системные диалоги состояния и синхронизации</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="platform">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="pill" data-i18n="platform.pill">ИНТЕРАКТИВНЫЙ ОБЗОР</div>
+          <h2 data-i18n="platform.title">Модульная архитектура платформы</h2>
+          <p data-i18n="platform.lead">Выберите блок и посмотрите, как он работает внутри экосистемы Aura.</p>
+        </div>
+        <div class="module-wrap glass reveal">
+          <div class="module-tabs" id="moduleTabs">
+            <button class="module-tab active" data-target="mod-chat" data-i18n="platform.tab.chat">Центр сообщений</button>
+            <button class="module-tab" data-target="mod-nodes" data-i18n="platform.tab.nodes">Управление узлами</button>
+            <button class="module-tab" data-target="mod-map" data-i18n="platform.tab.map">Возможности карты</button>
+            <button class="module-tab" data-target="mod-settings" data-i18n="platform.tab.settings">Центр управления</button>
+          </div>
+          <div class="module-panels">
+            <article class="module-panel active" id="mod-chat">
+              <h3 data-i18n="platform.chat.title">Центр сообщений</h3>
+              <p data-i18n="platform.chat.lead">Текст, голос, фото, реакции и интерактивный контент в едином окне разговора.</p>
+              <div class="chip-row">
+                <span class="chip" data-i18n="platform.chat.chip1">Чат каналов</span>
+                <span class="chip" data-i18n="platform.chat.chip2">Личные сообщения</span>
+                <span class="chip" data-i18n="platform.chat.chip3">Голосовые</span>
+                <span class="chip" data-i18n="platform.chat.chip4">Фото</span>
+                <span class="chip" data-i18n="platform.chat.chip5">Закрепы</span>
+                <span class="chip" data-i18n="platform.chat.chip6">Поиск и история</span>
+              </div>
+            </article>
+            <article class="module-panel" id="mod-nodes">
+              <h3 data-i18n="platform.nodes.title">Управление узлами</h3>
+              <p data-i18n="platform.nodes.lead">Полное управление нодами: листинг, профиль, группировка, фильтры, избранное и быстрые действия.</p>
+              <div class="chip-row">
+                <span class="chip" data-i18n="platform.nodes.chip1">Карточка узла</span>
+                <span class="chip" data-i18n="platform.nodes.chip2">Папки и группы</span>
+                <span class="chip" data-i18n="platform.nodes.chip3">Избранное</span>
+                <span class="chip" data-i18n="platform.nodes.chip4">QR-инструменты</span>
+                <span class="chip" data-i18n="platform.nodes.chip5">Профиль → Личные сообщения</span>
+              </div>
+            </article>
+            <article class="module-panel" id="mod-map">
+              <h3 data-i18n="platform.map.title">Возможности карты</h3>
+              <p data-i18n="platform.map.lead">Канал-ориентированная карта сети с метками, синхронизацией и обменом геоданными.</p>
+              <div class="chip-row">
+                <span class="chip" data-i18n="platform.map.chip1">Сетевая карта</span>
+                <span class="chip" data-i18n="platform.map.chip2">Обмен метками</span>
+                <span class="chip" data-i18n="platform.map.chip3">Импорт по ссылке</span>
+                <span class="chip" data-i18n="platform.map.chip4">Синхронизация</span>
+                <span class="chip" data-i18n="platform.map.chip5">Приватность</span>
+              </div>
+            </article>
+            <article class="module-panel" id="mod-settings">
+              <h3 data-i18n="platform.settings.title">Центр управления</h3>
+              <p data-i18n="platform.settings.lead">10+ экранов конфигурации: LoRa, безопасность, пользователь/устройство, MQTT, телеметрия, прошивка и системное администрирование.</p>
+              <div class="chip-row">
+                <span class="chip" data-i18n="platform.settings.chip1">Настройки LoRa</span>
+                <span class="chip" data-i18n="platform.settings.chip2">Безопасность каналов</span>
+                <span class="chip" data-i18n="platform.settings.chip3">Телеметрия</span>
+                <span class="chip" data-i18n="platform.settings.chip4">Обновление прошивки</span>
+                <span class="chip" data-i18n="platform.settings.chip5">Перезагрузка и сброс</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="screenshots">
+      <div class="container">
+        <div class="section-head reveal" aria-hidden="true">
+          <div class="pill" data-i18n="shots.pill">СКРИНШОТЫ</div>
+        </div>
+        <div class="shots-wrap reveal">
+          <div class="shots-stage glass" id="shotsStage">
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Logo-22c4be66-476c-4796-838a-1cc2068b1c38.png"
+              alt="Логотип Aura Mesh на стартовом экране"
+              data-i18n-alt="shots.alt1"
+              class="shot active"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Connecting-2780aba2-e6d9-42e2-ab1d-250f8fe5e5ed.png"
+              alt="Экран подключения устройств в Aura"
+              data-i18n-alt="shots.alt2"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-nodes-ca7a2c6a-b6e5-4ee0-b0d1-ecdbaf91d1a8.png"
+              alt="Список узлов сети в Aura"
+              data-i18n-alt="shots.alt3"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Chat-3a3296a7-86a3-4596-95cc-2e9500196c36.png"
+              alt="Экран чата в Aura"
+              data-i18n-alt="shots.alt4"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Map-Nodes-9530ef93-fe7f-4e95-9ab8-ea924fedf577.png"
+              alt="Экран карты и узлов в Aura"
+              data-i18n-alt="shots.alt5"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Marks-4701be73-2287-4cf6-a51a-810495f2168a.png"
+              alt="Экран меток на карте в Aura"
+              data-i18n-alt="shots.alt6"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Aura-Mesh-Profile-4b250ac3-c00a-4d59-ad59-536797ecfcf3.png"
+              alt="Экран профиля узла в Aura"
+              data-i18n-alt="shots.alt7"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Firmware-for-T114-8e1077c2-11ef-45de-b3b3-c19ded1b3567.png"
+              alt="Устройство с прошивкой AuRa: экран приветствия"
+              data-i18n-alt="shots.alt8"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Firmware-for-Heltek-Pocket-7c6c3094-2ef6-431a-a69e-f7bd2c7a2e47.png"
+              alt="Устройство Heltec: экран приветствия AuRa"
+              data-i18n-alt="shots.alt9"
+              class="shot"
+              loading="lazy"
+            >
+            <img
+              src="/Users/percy/.cursor/projects/Users-percy-AndroidStudioProjects-AuRus/assets/Firmware-for-Heltek-Pocket-10000-1cf044eb-a3ed-4559-bce2-58b0f0bcb09b.png"
+              alt="Устройство Heltec: информационный экран прошивки AuRa"
+              data-i18n-alt="shots.alt10"
+              class="shot"
+              loading="lazy"
+            >
+            <div class="shots-fallback">
+              <strong data-i18n="shots.hintStrong">Подсказка:</strong> <span data-i18n="shots.hintText">если изображения не загрузились, проверьте доступ к локальным путям файлов.</span>
+            </div>
+          </div>
+          <div class="shots-controls">
+            <button class="shot-btn" type="button" id="shotPrev" aria-label="Предыдущий скриншот" data-i18n-aria-label="shots.prev">←</button>
+            <button class="shot-btn" type="button" id="shotNext" aria-label="Следующий скриншот" data-i18n-aria-label="shots.next">→</button>
+          </div>
+          <div class="shots-dots" id="shotsDots" aria-label="Навигация по скриншотам" data-i18n-aria-label="shots.dots"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="pill" data-i18n="flow.pill">СЦЕНАРИЙ</div>
+          <h2 data-i18n="flow.title">Сквозной пользовательский сценарий</h2>
+          <p data-i18n="flow.lead">От первого запуска до полного контроля mesh-инфраструктуры.</p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item glass reveal">
+            <span class="timeline-index">01</span>
+            <h3 data-i18n="flow.i1.title">Первый запуск + защита доступа</h3>
+            <p data-i18n="flow.i1.text">Инструкция первого запуска, splash-поток, пароль и сохранение идентичности ноды.</p>
+          </div>
+          <div class="timeline-item glass reveal">
+            <span class="timeline-index">02</span>
+            <h3 data-i18n="flow.i2.title">Подключение к радио</h3>
+            <p data-i18n="flow.i2.text">Bluetooth/USB/Wi‑Fi соединение, контроль соединения и устойчивый фоновый сервис.</p>
+          </div>
+          <div class="timeline-item glass reveal">
+            <span class="timeline-index">03</span>
+            <h3 data-i18n="flow.i3.title">Коммуникация и координация</h3>
+            <p data-i18n="flow.i3.text">Чаты, Личные сообщения, мультимедиа, карта, маяки, голосование и управление списками задач.</p>
+          </div>
+          <div class="timeline-item glass reveal">
+            <span class="timeline-index">04</span>
+            <h3 data-i18n="flow.i4.title">Настройка и обслуживание</h3>
+            <p data-i18n="flow.i4.text">LoRa/каналы/безопасность/телеметрия, обновление прошивки, перезагрузка/выключение/сброс.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="pill" data-i18n="faq.pill">ВОПРОСЫ</div>
+          <h2 data-i18n="faq.title">Частые вопросы</h2>
+        </div>
+        <div class="faq-list reveal">
+          <details class="faq-item glass">
+            <summary data-i18n="faq.q1.q">Где и как получить пароль для инициализации приложения ?</summary>
+            <p data-i18n="faq.q1.a">Каждый пароль уникален и привязан к вашей ноде, один пароль — одно устройство. Для получения пароля напишите в поддержку.</p>
+          </details>
+          <details class="faq-item glass">
+            <summary data-i18n="faq.q2.q">Будут ли мои сообщения доходить до пользователей у кого нет данной программы и они используют Meshtastic ?</summary>
+            <p data-i18n="faq.q2.a">Минимальный функционал который есть в программе Meshtastic мы перенесли полностью, поэтому сообщения из нашего приложения в Meshtastic и наоборот будут приходить, но новый функционал который реализован в программе AuRa в Meshtastic работать никогда не будет.</p>
+          </details>
+          <details class="faq-item glass">
+            <summary data-i18n="faq.q3.q">Можно ли использовать Оффлай карты и ставить на них метки ?</summary>
+            <p data-i18n="faq.q3.a">Конечно! Это одна из основных функций на которую мы делали упор.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section" id="cta">
+      <div class="container">
+        <div class="cta-card glass reveal">
+          <div>
+            <div class="pill" data-i18n="cta.pill">КОНТАКТЫ</div>
+            <h2 data-i18n="cta.title">По всем вопросам пишите в Телеграмм @Aura_Mesh</h2>
+            <p data-i18n="cta.lead">В ближайшее время появимся на всех Российских платформах.</p>
+          </div>
+          <a href="#top" class="btn btn-primary">
+            <span data-i18n="cta.toTop">Поднять наверх</span>
+            <span class="btn-icon">↑</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p data-i18n-html="footer.copy">© <span id="year"></span> Aura. Платформа связи для mesh-сетей. @just_be_freee</p>
+      <a href="#top" class="footer-top" data-i18n="footer.top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Наверх" data-i18n-aria-label="a11y.backToTop">↑</button>
+
+  <script src="landing.js"></script>
+</body>
+</html>

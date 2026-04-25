@@ -1,0 +1,31 @@
+*.iml
+.gradle
+**/.gradle/
+local.properties
+
+# Build outputs (all modules)
+build/
+app/build/
+app/release/
+passwordgen/build/
+
+# Upstream Meshtastic firmware (clone separately: github.com/meshtastic/firmware)
+meshtastic-firmware/
+
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Подпись release
+keystore.properties
+signing/*.jks
+signing/*.keystore

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <files-path name="chat_history" path="chat_history/" />
+    <!-- Архивы ChatHistory_&lt;nodeId&gt;/ не лежат в chat_history/ -->
+    <files-path name="internal_files" path="." />
+</paths>

@@ -1,0 +1,73 @@
+{
+  "version": 8,
+  "name": "AuRa Offline Dark",
+  "glyphs": "asset://maplibre/fonts/{fontstack}/{range}.pbf",
+  "sources": {
+    "offline": {
+      "type": "vector",
+      "tiles": [
+        "__TILES_URL__"
+      ],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#031022"
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "offline",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#07263A",
+        "fill-opacity": 0.9
+      }
+    },
+    {
+      "id": "landcover",
+      "type": "fill",
+      "source": "offline",
+      "source-layer": "landcover",
+      "paint": {
+        "fill-color": "#06192A",
+        "fill-opacity": 0.8
+      }
+    },
+    {
+      "id": "roads",
+      "type": "line",
+      "source": "offline",
+      "source-layer": "transportation",
+      "paint": {
+        "line-color": "#39E7FF",
+        "line-width": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          5, 0.4,
+          10, 1.2,
+          14, 2.4
+        ],
+        "line-opacity": 0.9
+      }
+    },
+    {
+      "id": "buildings-outline",
+      "type": "line",
+      "source": "offline",
+      "source-layer": "building",
+      "paint": {
+        "line-color": "#33E1FF",
+        "line-width": 0.7,
+        "line-opacity": 0.7
+      }
+    }
+  ]
+}

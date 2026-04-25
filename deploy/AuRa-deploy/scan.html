@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#030108">
+  <title>AuRa — сканер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/landing.css?v=20260425-no-xp">
+  <style>
+    .page { padding: 88px 0; }
+    .card { max-width: 920px; margin: 0 auto; border-radius: 22px; padding: 18px; border: 1px solid var(--border); }
+    .grid { display:grid; grid-template-columns: 1.2fr 0.8fr; gap: 14px; align-items: start; }
+    .videoBox { border-radius: 18px; border: 1px solid rgba(255,255,255,0.10); overflow:hidden; background: rgba(0,0,0,0.35); }
+    video { width: 100%; height: auto; display:block; background: #000; }
+    .side { padding: 8px; }
+    .muted { color: var(--muted); line-height: 1.6; }
+    .err { margin-top: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(255,107,138,0.55); background: rgba(80,0,10,0.28); color: rgba(255, 220, 228, 0.95); display:none; }
+    .qrBox { margin-top: 12px; padding: 12px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04); display:none; }
+    .qrImg { width: 220px; height: 220px; background: #fff; border-radius: 14px; display:block; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <canvas class="matrix-bg" id="matrixCanvas" aria-hidden="true"></canvas>
+  <div class="bg-noise"></div>
+  <div class="bg-radial"></div>
+  <div class="bg-light bg-light-left"></div>
+  <div class="bg-light bg-light-right"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a href="/" class="brand">
+        <span class="brand-dot"></span>
+        <span class="brand-text">AuRa</span>
+      </a>
+      <nav class="nav">
+        <a class="nav-cta" href="/profile">Профиль</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="container">
+      <div class="glass card">
+        <div class="grid">
+          <div class="videoBox">
+            <video id="v" playsinline autoplay muted></video>
+          </div>
+          <div class="side">
+            <h2 style="margin:0 0 8px;">Сканирование</h2>
+            <p class="muted" style="margin:0 0 12px;">
+              Наведите камеру на QR профиля из приложения. Сайт проверит, что <strong>Node ID</strong> в QR совпадает с тем,
+              с которым вы вошли, и импортирует данные профиля и VIP.
+            </p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="btn btn-primary" id="startBtn" type="button">Запустить камеру</button>
+              <button class="btn btn-ghost" id="stopBtn" type="button">Остановить</button>
+              <a class="btn btn-ghost" href="/profile">Назад</a>
+            </div>
+            <div class="err" id="errBox"></div>
+            <div class="qrBox" id="pairBox">
+              <div class="muted" style="margin-bottom:8px;"><strong>Шаг 2:</strong> отсканируйте этот QR в приложении (это код синхронизации).</div>
+              <img class="qrImg" id="pairImg" alt="QR синхронизации" />
+              <div class="muted" style="margin-top:10px;font-size:0.95rem;">
+                Статус: <strong id="pairStatus">pending</strong>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;">
+                <button class="btn btn-primary" id="pairPollBtn" type="button">Проверить статус</button>
+                <a class="btn btn-ghost" href="/profile">Открыть профиль</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/landing.js?v=20260425-no-xp"></script>
+  <script src="/scan.js?v=20260425-qr-sig"></script>
+</body>
+</html>

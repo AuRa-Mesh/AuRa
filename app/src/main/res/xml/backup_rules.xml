@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Правила Android Auto Backup (API 23–30).
+
+    VIP: таймер и реестр кодов — как раньше.
+    Прогрессия (уровень, ОП, медали Аллеи славы): Room [aura_chat.db] + prefs счётчиков,
+    на том же уровне надёжности, что и VIP (облако / перенос устройства при включённом бэкапе).
+-->
+<full-backup-content>
+    <include domain="sharedpref" path="vip_access_prefs.xml" />
+    <include domain="sharedpref" path="vip_extension_used_codes.xml" />
+    <include domain="database" path="aura_chat.db" />
+    <include domain="sharedpref" path="aura_experience_v1.xml" />
+    <include domain="sharedpref" path="aura_progress_counters_v1.xml" />
+    <include domain="sharedpref" path="aura_app_uptime_prefs.xml" />
+    <include domain="sharedpref" path="aura_au_secure_v1.xml" />
+</full-backup-content>
